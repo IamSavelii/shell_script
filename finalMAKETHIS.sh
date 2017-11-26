@@ -7,7 +7,7 @@ ME=`basename $0`
 
 # Функция Help
 help() {
-    echo " "
+    echo 
     echo "Использование: sh $ME [КЛЮЧ]... ИСТОЧНИК НАЗНАЧЕНИЕ"
     echo "      или      sh $ME [КЛЮЧ]... ИСТОЧНИК"
     echo
