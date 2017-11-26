@@ -2,7 +2,7 @@
 
 This script can copy, move, delete and rename files.
 
-da
+  
 
 ### Installation
 
