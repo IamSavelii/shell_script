@@ -101,7 +101,7 @@ else
                 *) help;;
             esac
             # Перейти к следующей опции
-            shift $(($OPTIND - 1))
+            shift
         done
     fi
 fi
