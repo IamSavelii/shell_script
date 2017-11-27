@@ -89,10 +89,9 @@ else
     if [ $# = "--help" ]
     then
         help
-        break
     else
 # getopts используется для поиска ключей в вводимой строке
-        while getopts "crmd:" Option ;
+        while getopts ":crmd:" Option ;
         do
             case $Option in
                 c) copy_file $2 $3;;
