@@ -35,7 +35,6 @@ copy_file(){
         fi
     else 
         echo "Файла $1 не существует!"
-        break
     fi
 }
 
