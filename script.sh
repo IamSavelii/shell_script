@@ -91,7 +91,7 @@ else
         help
     else
 # getopts используется для поиска ключей в вводимой строке
-        while getopts ":crmd:" Option ;
+        while getopts ":c:r:m:d:" Option ;
         do
             case $Option in
                 c) copy_file $2 $3;;
