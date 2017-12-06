@@ -77,30 +77,48 @@ move_file(){
     fi
 }
 
+#if [ -z $3 ]
+#then 
+#echo "Не задан второй аргумент"
+#exit 0
+#fi
+
 ## Работа с ключами
 
-# Если скрипт запущен без аргументов, открываем справку.
-if [ $# = 0 ]; then
-    echo "                       Вы не указали ключи!"
-    echo "        Воспользуйтесь --help для получения справки. "
+if [ $1 = "-d" ]
+then
+    delete_file $2
+    exit 0
 else
-# Проверка на ключ --help
-    if [ $# = "--help" ]
-    then
-        help
+# Если скрипт запущен без аргументов, открываем справку.
+    if [ $# = 0 ]; then
+        echo "                       Вы не указали ключи!"
+        echo "        Воспользуйтесь --help для получения справки. "
+        exit 0
     else
+# Проверка на ключ --help
+        if [ $# = "--help" ]
+        then
+            help
+            exit 0
+        else
+            if [ -n $3 ]
+            then
 # getopts используется для поиска ключей в вводимой строке
-        while getopts ":crmd:" Option ;
-        do
-            case $Option in
-                c) copy_file $2 $3;;
-                r) rename_file $2 $3;;
-                m) move_file $2 $3;;
-                d) delete_file $2;;
-                *) help;;
-            esac
-            # Перейти к следующей опции
-            shift
-        done
+                while getopts ":crm:" Option ;
+                do
+                    case $Option in
+                        c) copy_file $2 $3;;
+                        r) rename_file $2 $3;;
+                        m) move_file $2 $3;;
+                        *) help;;
+                    esac
+                # Перейти к следующей опции
+                shift
+                done
+            else
+                echo "Вы не указали второй параметр!"
+            fi
+        fi
     fi
 fi
