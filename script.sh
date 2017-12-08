@@ -86,7 +86,7 @@ move_file(){
 
 ## Работа с ключами
 
-if [ $1 = "-d" ]
+if [ $1 = "-d" ] ## || [ -n $2 ]
 then
     delete_file $2
     exit 0
@@ -103,7 +103,11 @@ else
             help
             exit 0
         else
+<<<<<<< HEAD
             if [ -n $2 ] || [ -n $3 ]
+=======
+            if [ -n $3 ] ###|| [ -n $2 ]
+>>>>>>> 7b30a43f92984f725947c313849af9ede0fe4471
             then
 # getopts используется для поиска ключей в вводимой строке
                 while getopts ":crm:" Option ;
