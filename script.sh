@@ -80,7 +80,7 @@ move_file(){
 
 ## Работа с ключами
 
-if [ $1 = "-d" ] ## || [ -n $2 ]
+if [ $1 = "-d" ]
 then
     delete_file $2
     exit 0
