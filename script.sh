@@ -80,40 +80,36 @@ move_file(){
 
 ## Работа с ключами
 
-if [ $1 = "-d" ]
+# Если скрипт запущен без аргументов или происходит вызов справки
+if [ $# = 0 ] || [ $1 = "--help" ]
 then
-    delete_file $2
-    exit 0
+    help
+    exit 1
 else
-# Если скрипт запущен без аргументов, открываем справку.
-    if [ $# = 0 ]; then
-        echo "                       Вы не указали ключи!"
-        echo "        Воспользуйтесь --help для получения справки. "
-        exit 0
+# Проверка на пустоту строк
+    if [ -z $2 ] || [ -z $3 ]
+    then
+#Проверка на не пустойвторой аргумент
+	    if [ -n $2 ] 
+		    then 
+		        if [ $1 = "-d" ] 
+			    then 
+                    delete_file $2
+			        exit 0
+		        fi 
+	        fi
+	    echo "Неверно заданы аргументы при использовании ключа \"${1}\", для справки используйте \"--help\"" 
     else
-# Проверка на ключ --help
-        if [ $# = "--help" ]
-        then
-            help
-            exit 0
-        else
-            if [ -n $2 ]
-            then
-# getopts используется для поиска ключей в вводимой строке
-                while getopts ":crm:" Option ;
-                do
-                    case $Option in
-                        c) copy_file $2 $3;;
-                        r) rename_file $2 $3;;
-                        m) move_file $2 $3;;
-                        *) help;;
-                    esac
-                # Перейти к следующей опции
-                shift
-                done
-            else
-                echo "Вы не указали второй параметр!"
-            fi
-        fi
+        while getopts ":crm:" Option ;
+        do
+            case $Option in
+                c) copy_file $2 $3;;
+                r) rename_file $2 $3;;
+                m) move_file $2 $3;;
+                d) delete_file $2;;
+            esac
+            # Перейти к следующей опции
+            shift
+        done	
     fi
 fi
