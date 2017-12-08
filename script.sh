@@ -103,7 +103,7 @@ else
             help
             exit 0
         else
-            if [ -n $3 ]
+            if [ -n $2 ] || [ -n $3 ]
             then
 # getopts используется для поиска ключей в вводимой строке
                 while getopts ":crm:" Option ;
